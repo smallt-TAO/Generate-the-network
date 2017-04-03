@@ -8,6 +8,13 @@ import numpy as np
 from six.moves import xrange
 from data import load_data
 
+import logging
+log_file = "./basic.log"
+logging.basicConfig(filename=log_file,
+                    level=logging.DEBUG,
+                    format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+                    datefmt='%a, %d %b %Y %H:%M:%S')
+
 from ops import *
 from utils import *
 
@@ -135,6 +142,7 @@ class DCGAN(object):
 
     def train(self, config):
         """Train DCGAN"""
+        logging.info("DCGAN train begin ... ")
         if config.dataset == 'mnist':
             # This code for load the other data, for example the adjacent matrix of the real network.
             # if you want to use the MNIST. You should use below:
